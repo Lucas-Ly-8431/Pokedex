@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    {{pokemon_list}}
+
+    {% for p in pokemon_list %}
+        <h2>{{p.pokedex_number}} {{p.name}}</h2>
+        <h3>{{p.primarytype.title}}-{{p.secondarytype.title}}</h3>
+    {% endfor %}
+</body>
+</html>

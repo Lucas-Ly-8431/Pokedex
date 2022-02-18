@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+    {% block title %}Pokedex{% endblock title %}
+    {% block head %}
+    <style>
+        #container{
+            width: 65%;
+            margin: auto;
+            background-color: lightgray;
+            border-radius: 15px;
+            padding: 5%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .pokemon_card{
+            border: 1px solid black;
+            border-radius: 8%;
+            padding: 20px;
+            background-color: ghostwhite;
+            font-size: large;
+        }
+        .number{
+            font-weight: bold;
+            color: rgb(54, 54, 54)
+        }
+        .title{
+            font-weight: bolder;
+            color: black;
+            font-variant: small-caps;
+        }
+        .type{
+            font-style: italic;
+        }
+    </style>
+    {% endblock head %}
+{% block content %}
+    <div id="container">
+    {% for p in pokemon_list %}
+        <div class="pokemon_card">
+            <div class="number">#{{p.pokedex_number}}</div>
+            <div class="title">{{p.name}}</div>
+            <div class="type">{{p.primarytype}}-{{p.secondarytype}}</div>
+            <a href="{% url 'Delete_Pokemon' p.pokedex_number %}">Delete</a>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock content %}
+
+
+
+
+<!-- Pokemondb.net -->

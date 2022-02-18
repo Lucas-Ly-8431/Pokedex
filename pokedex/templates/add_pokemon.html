@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Pokemon
+{% endblock title %}
+{% block head %}
+    <style>
+        form{
+            margin: auto;
+            padding: 3%;
+            width: 30%;
+            border-radius: 8px;
+            background-color: lightskyblue;
+            border: 1px solid darkslateblue;
+        }
+        label{
+            width: 100%;
+        }
+        input, select{
+            width: 100%;
+            margin: 15px 5px;
+            padding: 5px;
+            border-radius: 8px;
+        }
+    </style>
+{% endblock head %}
+{% block content %}
+    <div class="form-container">
+        <form action="{% url 'add_pokemon' %}" method="post" id="add_pokemon_form">
+            {% csrf_token %}
+            <label for="pokemon_name" required>Name of the Pokemon </label>
+            <input type="text" name="pokemon_name" id="pokemon_name">
+
+            <label for="pokemon_number" required>Number of the Pokemon </label>
+            <input type="number" name="pokemon_number" id="pokemon_number">
+
+            <label for="primary_type" required>Primary Type</label>
+            <select name="primary_type" id="primary_type">
+                {% for t in types %}
+                    <option value="{{t.id}}">{{t.title}}</option>
+                {% endfor %}
+            </select>
+
+            <label for ="secondary_type" required>Secondary Type</label>
+            <select name="secondary_type" id="secondary_type">
+                {% for t in types %}
+                    <option value="{{t.id}}">{{t.title}}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+{% endblock content %}
